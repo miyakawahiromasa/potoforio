@@ -1,0 +1,291 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.profile {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.profile img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 見出し */
+.large-text {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+@media screen and (max-width: 599px) {
+
+  .large-text {
+    font-size: 20px;
+  }
+
+  .pr-text p,
+  table {
+    font-size: 14px;
+  }
+
+  img {
+    width: 150px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1023px) {
+  .large-text {
+    font-size: 24px;
+  }
+
+  img {
+    width: 180px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .large-text {
+    font-size: 28px;
+  }
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  background-color: #ffffff;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* タイトルの見た目 */
+.site-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+.band {
+  width: 100%;
+  background-color: #1f6f6b; /* 緑系（画像に近い） */
+  color: #ffffff;
+
+  padding: 60px 16px;
+  text-align: center;
+}
+
+.band h2 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+.bands {
+  width: 100%;
+  background-color: #0058fc; /* 緑系（画像に近い） */
+  color: #ffffff;
+
+}
+
+.bands h3 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+@media screen and (max-width: 599px) {
+  .band {
+    padding: 40px 12px;
+  }
+.bands {
+    padding: 40px 12px;
+  }
+  .band h2 {
+    font-size: 24px;
+  }
+  .bands h3 {
+    font-size: 24px;
+  }
+}
+.appeal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 上段：横並び */
+.appeal-top {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.appeal-text,
+.appeal-video {
+  flex: 1;
+}
+
+/* 動画 */
+.appeal-video iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
+/* 下段：画像横並び */
+.appeal-images {
+  display: flex;
+  gap: 12px;
+}
+
+.appeal-images img {
+  width: 20%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* スマホ */
+@media screen and (max-width: 768px) {
+  .appeal-top {
+    flex-direction: column;
+  }
+
+  .appeal-images {
+    flex-direction: column;
+  }
+
+  .appeal-images img {
+    width: 100%;
+  }
+}
+.appeal-video iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 768px) {
+  .appeal {
+    flex-direction: column;   /* ← 横 → 縦 */
+  }
+
+  .appeal-video iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+video {
+  width: 100%;
+  max-width: 480px;
+}
+/* ローディング全体 */
+#loading {
+  position: fixed;
+  inset: 0;
+  background: #111;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+body.loading {
+  overflow: hidden;
+}
+/* くるくる回るやつ */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #555;
+  border-top: 5px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+#loading.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.loading-gif {
+  width: 120px;
+  height: auto;
+}
+@media screen and (max-width: 599px) {
+  .loading-gif {
+    width: 80px;
+  }
+}
+.spec-images {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.spec-images img {
+  width: 45%;
+  max-width: 500px;
+  height: auto;
+}
+
+/* スマホ時は縦並び */
+@media screen and (max-width: 599px) {
+  .spec-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .spec-images img {
+    width: 90%;
+  }
+}
+.works-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.works-nav a {
+  padding: 10px 18px;
+  background-color: #ffffff;
+  color: #1f6f6b;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 999px;
+  border: 2px solid #1f6f6b;
+  transition: all 0.2s ease;
+}
+
+.works-nav a:hover {
+  background-color: #1f6f6b;
+  color: #ffffff;
+}
+html {
+  scroll-behavior: smooth;
+}
+section[id] {
+  scroll-margin-top: 80px;
+}
