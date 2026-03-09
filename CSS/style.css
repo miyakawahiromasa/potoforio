@@ -289,3 +289,16 @@ html {
 section[id] {
   scroll-margin-top: 80px;
 }
+.appeal-box{
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease;
+}
+
+.appeal-box.open{
+  max-height: 300px;
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -38,3 +38,9 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("resize", responsiveAdjust);
+const button = document.getElementById("appealButton");
+const box = document.getElementById("appealBox");
+
+button.addEventListener("click", function(){
+  box.classList.toggle("open");
+});
