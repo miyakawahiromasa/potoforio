@@ -307,3 +307,9 @@ section[id] {
   background: #222;
   color: #fff;
 }
+.a-star-img {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 10px auto;
+}
