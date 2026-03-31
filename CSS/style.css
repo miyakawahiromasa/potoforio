@@ -170,6 +170,13 @@ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   .appeal-images img {
     width: 100%;
   }
+  .a-star-flex {
+    flex-direction: column;
+  }
+
+  .a-star-img {
+    width: 100%;
+  }
 }
 .appeal-video iframe {
   width: 100%;
@@ -307,9 +314,18 @@ section[id] {
   background: #222;
   color: #fff;
 }
+.a-star-flex {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.a-star-text {
+  flex: 1;
+}
+
 .a-star-img {
-  width: 100%;
-  max-width: 400px;
-  display: block;
-  margin: 10px auto;
+  width: 40%;
+  max-width: 300px;
+  height: auto;
 }
