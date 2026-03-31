@@ -42,5 +42,26 @@ const button = document.getElementById("appealButton");
 const box = document.getElementById("appealBox");
 
 button.addEventListener("click", function(){
-  box.classList.toggle("open");
+const button = document.getElementById("appealButton");
+const modal = document.getElementById("appealModal");
+const close = document.getElementById("closeModal");
+
+button.addEventListener("click", function(){
+  modal.style.display = "flex";
+  document.body.classList.add("modal-open");
 });
+
+close.addEventListener("click", function(){
+  modal.style.display = "none";
+  document.body.classList.remove("modal-open");
+});
+
+// 背景クリックで閉じる
+modal.addEventListener("click", function(e){
+  if(e.target === modal){
+    modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+  }
+});
+});
+
