@@ -301,4 +301,9 @@ section[id] {
   max-height: 300px;
   opacity: 1;
   transform: translateY(0);
+
+  padding: 15px;
+  border: 1px solid #ccc;
+  background: #222;
+  color: #fff;
 }
