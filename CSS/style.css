@@ -334,8 +334,10 @@ section[id] {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.9); /* 少し濃くすると良い */
   z-index: 9999;
+
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -344,19 +346,24 @@ section[id] {
 .modal-content {
   background: #111;
   color: #fff;
-  width: 90%;
-  max-width: 900px;
-  max-height: 90vh;
+
+  width: 100vw;      /* 画面幅いっぱい */
+  height: 100vh;     /* 画面高さいっぱい */
+
+  max-width: none;   /* 制限解除 */
+  max-height: none;
+
   overflow-y: auto;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 40px 20px;
+  border-radius: 0;  /* 角丸なしで全画面感 */
 }
 
 /* 閉じるボタン */
 .close {
-  position: absolute;
+  position: fixed; 
   top: 20px;
-  right: 30px;
-  font-size: 30px;
+  right: 20px;
+  font-size: 40px;
+  color: #fff;
   cursor: pointer;
 }
