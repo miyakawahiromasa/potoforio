@@ -45,16 +45,19 @@ window.addEventListener("resize", responsiveAdjust);
 // =====================
 // モーダル（複数対応）
 // =====================
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("JS読み込みOK"); // ←確認用
 document.querySelectorAll(".appealButton").forEach(button => {
   button.addEventListener("click", () => {
     const target = button.dataset.target;
     const modal = document.getElementById(target);
-console.log("クリックされた", target);
-    if (!modal){console.log("modalが見つからない"); return};
 
-    modal.style.display = "none";
+    console.log("クリックされた", target);
+
+    if (!modal){
+      console.log("modalが見つからない");
+      return;
+    }
+
+    modal.style.display = "flex"; // ← 開く
     document.body.classList.add("modal-open");
   });
 });
@@ -62,7 +65,8 @@ console.log("クリックされた", target);
 document.querySelectorAll(".close").forEach(closeBtn => {
   closeBtn.addEventListener("click", () => {
     const modal = closeBtn.closest(".modal");
-    modal.style.display = "flex";
+
+    modal.style.display = "none"; // ← 閉じる
     document.body.classList.remove("modal-open");
   });
 });
@@ -75,5 +79,4 @@ document.querySelectorAll(".modal").forEach(modal => {
       document.body.classList.remove("modal-open");
     }
   });
-});
 });
