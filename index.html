@@ -83,12 +83,22 @@
   <p class="large-text">第19回福岡ゲームコンテスト「GFF AWARD 2026」ように作っていたが間に合わないためYDAExhibitionに作品を展示</p>
 </section>
 <section class="appeal">
-   <div class="appeal-top">
+  <div class="appeal-top">
   <div class="appeal-text">
-    <h2 class="large-text">アピールポイント</h2>
-      <h2>すべての敵を担当</h2>
-    <h2 class="large-text">担当箇所</h2>
-    <h2>敵の全て</h2>
+<button id="appealButton" data-target="modal-hoshi">アピールポイントを見る</button>
+
+<div id="modal-hoshi" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+
+    <h2>アピールポイント</h2>
+    <p>すべての敵を担当</p>
+
+    <h2>担当箇所</h2>
+    <p>敵の全て</p>
+
+  </div>
+</div>
     <table border="1"> 
     <tbody>
     <tr>
@@ -141,9 +151,9 @@
 <section class="appeal">
   <div class="appeal-top">
   <div class="appeal-text">
-<button id="appealButton">アピールポイントを見る</button>
+<button id="appealButton" data-target="modal-root">アピールポイントを見る</button>
 
-<div id="appealModal" class="modal">
+<div id="modal-root" class="modal">
   <div class="modal-content">
     <span id="closeModal" class="close">&times;</span>
 
@@ -191,8 +201,7 @@ A*（エースター）アルゴリズムは、スタート地点からゴール
 
 <h3>■ 実装した理由</h3>
 <p>
-シンプルな直線移動ではなく、障害物を回避しながら自然に追いかける動きを実現するためにA*を採用しました。
-これにより、より戦略性のあるゲーム体験を実現しています。
+A*を学ぶために採用しました
 </p>
 </div>
     
@@ -247,7 +256,11 @@ A*（エースター）アルゴリズムは、スタート地点からゴール
 <section class="appeal">
   <div class="appeal-top">
   <div class="appeal-text">
-<h2 class="large-text">アピールポイント</h2>
+<button id="appealButton" data-target="modal-trick">アピールポイントを見る</button>
+
+<div id="modal-trick" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
 <h2>・3日間で制作</h2>
 <h2>・アーケード筐体に移植</h2>
 <h2 class="large-text">担当箇所</h2>
@@ -302,7 +315,11 @@ A*（エースター）アルゴリズムは、スタート地点からゴール
 <section class="appeal">
   <div class="appeal-top">
   <div class="appeal-text">
-<h2 class="large-text">アピールポイント</h2>
+<button id="appealButton" data-target="modal-jigoku">アピールポイントを見る</button>
+
+<div id="modal-jigoku" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
 <h2>・3日間で制作</h2>
 <h2>・東京ゲームショウに出展</h2>
 <h2 class="large-text">担当箇所</h2>
@@ -355,7 +372,11 @@ A*（エースター）アルゴリズムは、スタート地点からゴール
 <section class="appeal">
   <div class="appeal-top">
   <div class="appeal-text">
-<h2 class="large-text">アピールポイント</h2>
+<button id="appealButton" data-target="modal-hoshi">アピールポイントを見る</button>
+
+<div id="modal-hoshi" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
 <h2>・3日間で制作</h2>
 <h2>・</h2>
 <h2 class="large-text">担当箇所</h2>
@@ -408,7 +429,11 @@ A*（エースター）アルゴリズムは、スタート地点からゴール
 <section class="appeal">
   <div class="appeal-top">
   <div class="appeal-text">
-<h2 class="large-text">アピールポイント</h2>
+<button id="appealButton" data-target="modal-hoshi">アピールポイントを見る</button>
+
+<div id="appealModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
 <h2>・敵機体（空中）すべて</h2>
 <h2 class="large-text">担当箇所</h2>
 <h2>・敵機体（空中）を担当</h2>

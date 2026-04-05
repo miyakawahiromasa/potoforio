@@ -1,3 +1,6 @@
+// =====================
+// レスポンシブ処理
+// =====================
 function responsiveAdjust() {
   const width = window.innerWidth;
 
@@ -16,17 +19,17 @@ function responsiveAdjust() {
   }
 }
 
-// DOMができたら loading を付ける
+// =====================
+// ローディング
+// =====================
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("loading");
 });
 
-// すべて読み込み終わったら解除
 window.addEventListener("load", () => {
   responsiveAdjust();
 
   const loading = document.getElementById("loading");
-
   if (!loading) return;
 
   loading.classList.add("hide");
@@ -38,30 +41,37 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("resize", responsiveAdjust);
-const button = document.getElementById("appealButton");
-const box = document.getElementById("appealBox");
 
-button.addEventListener("click", function(){
-const button = document.getElementById("appealButton");
-const modal = document.getElementById("appealModal");
-const close = document.getElementById("closeModal");
+// =====================
+// モーダル（複数対応）
+// =====================
+document.querySelectorAll(".appealButton").forEach(button => {
+  button.addEventListener("click", () => {
+    const target = button.dataset.target;
+    const modal = document.getElementById(target);
 
-button.addEventListener("click", function(){
-  modal.style.display = "flex";
-  document.body.classList.add("modal-open");
+    if (!modal) return;
+
+    modal.style.display = "flex";
+    document.body.classList.add("modal-open");
+  });
 });
 
-close.addEventListener("click", function(){
-  modal.style.display = "none";
-  document.body.classList.remove("modal-open");
+document.querySelectorAll(".close").forEach(closeBtn => {
+  closeBtn.addEventListener("click", () => {
+    const modal = closeBtn.closest(".modal");
+    modal.style.display = "flex";
+    document.body.classList.remove("modal-open");
+  });
 });
 
 // 背景クリックで閉じる
-modal.addEventListener("click", function(e){
-  if(e.target === modal){
-    modal.style.display = "none";
-    document.body.classList.remove("modal-open");
-  }
-});
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+      document.body.classList.remove("modal-open");
+    }
+  });
 });
 
