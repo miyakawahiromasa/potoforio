@@ -365,3 +365,7 @@ section[id] {
   color: #fff;
   cursor: pointer;
 }
+.appealButton {
+  white-space: nowrap;  /* 改行させない */
+  width: auto;
+}
