@@ -52,7 +52,7 @@ document.querySelectorAll(".appealButton").forEach(button => {
 
     if (!modal) return;
 
-    modal.style.display = "flex";
+    modal.style.display = "none";
     document.body.classList.add("modal-open");
   });
 });
