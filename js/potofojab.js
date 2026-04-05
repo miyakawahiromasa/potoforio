@@ -45,6 +45,7 @@ window.addEventListener("resize", responsiveAdjust);
 // =====================
 // モーダル（複数対応）
 // =====================
+document.addEventListener("DOMContentLoaded", () => {
 document.querySelectorAll(".appealButton").forEach(button => {
   button.addEventListener("click", () => {
     const target = button.dataset.target;
@@ -74,4 +75,4 @@ document.querySelectorAll(".modal").forEach(modal => {
     }
   });
 });
-
+});
