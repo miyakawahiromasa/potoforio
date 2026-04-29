@@ -30,11 +30,11 @@
 </tr>
             <tr> 
                 <th>趣味</th>
-                <th>ゲーム</th>
+                <td>ゲーム</td>
             </tr>
             <tr>
                 <th>好きなゲーム</th>
-                <th>Fate・GrandOrder/ブルーアーカイブ/Limbus Company/ゼンレスゾーンゼロ/LobotomyCorporation</th>
+                <td>Fate・GrandOrder/ブルーアーカイブ/Limbus Company/ゼンレスゾーンゼロ/LobotomyCorporation</td>
             </tr>
         </tbody>
         </table>
@@ -49,12 +49,13 @@
             </tr>
              <tr>
                 <td>開発環境</td>
-                <td>Unity / Visual Studio2022 / UnrealEngine4.26 </td>          
+                <td>Unity（使用バージョン  2022.3.22f1 ・6000.0.67f1） / Visual Studio2022 / UnrealEngine4.26 </td>          
             </tr>
             <tr>
                  <td>資格</td>
                  <td>令和6年12月 情報検定情報活用試験3級 合格<br>
-                    令和6年12月 CGクリエイター検定 ベーシク 合格</td>
+                    令和6年12月 CGクリエイター検定 ベーシク 合格
+                    令和6年12月 CGエンジニア検定 ベーシク 合格</td>
             </tr>
         </tbody>
 
@@ -65,22 +66,22 @@
   
 </section>
 <div class="works-nav">
-    <a href="#hoshiatsume">ホシアツメ</a>
+    <a href="#hoshiatsume">星間ひっこしパッキング</a>
     <a href="#boxadventure">ルートレイダー</a>
     <a href="#trick-or-find">Trick or Find</a>
     <a href="#jigoku">地獄少女神回避！</a>
     <a href="#tokage">トカゲサバイバー</a>
     <a href="#zebiusu">ゼビウス(再現)</a>
-<div>
+</div>
 
 </div>
 <section class="band" id="hoshiatsume">
-  <h2>ホシアツメ</h2>
+  <h2>星間ひっこしパッキング</h2>
 </section>
 <section class="bands">
   <h3>概要</h3>
-  <p class="large-text">敵を倒して敵からドロップした欠片を集めステータスを強化し進んでいく2Dローグライクアクションゲーム</p>
-  <p class="large-text">第19回福岡ゲームコンテスト「GFF AWARD 2026」ように作っていたが間に合わないためYDAExhibitionに作品を展示</p>
+  <p class="large-text">制限時間以内もしくは個数制限以内にできるだけ物を詰めてスコアを稼ぐゲーム</p>
+  <p class="large-text">２年生最後の学校のイベントのゲームジャムで作成</p>
 </section>
 <section class="appeal">
   <div class="appeal-top">
@@ -90,13 +91,45 @@
 <div id="modal-hoshi" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
+<p>シェーダートランジションは、2つの見た目（テクスチャや色）をなめらかに切り替える表現のこと</p>
+<p></p>
+<div class="a-star-flex">
+  <div class="a-star-text">
+    <p>
+    使用しているのはディゾルブ系のトランジションで隣の画像のでしていることは主に
+    </p>
 
-    <h2>アピールポイント</h2>
-    <p>すべての敵を担当</p>
+    <ul>
+      <li><strong>UV拡大縮小</strong>中央から広がるようにUV操作</li>
+      <li><strong>ノイズ＋しきい値</strong>トランジション制御</li>
+      <li><strong>Alpha Clip（くり抜き）</strong>表示・非表示を切り替え</li>
+    </ul>
+  </div>
 
-    <h2>担当箇所</h2>
-    <p>敵の全て</p>
+  <img src="img/スクリーンショット 2026-04-28 092115.png" class="a-star-img">
+ </div>
+<h3>■ トランジションの流れ</h3>
 
+ <div class="a-star-flex">
+  <img src="img/スクリーンショット 2026-04-28 093020.png" class="a-star-img">
+  <ol class="a-star-text">
+    <li>ボタンが押されたとき実行</li>
+    <li>フィードを１から０に変える</li>
+    <li>０の時画面全体が隠れる</li>
+  </ol>
+ </div>
+<div class="a-star-flex">
+  <img src="img/スクリーンショット 2026-04-28 094308.png" class="a-star-img">
+  <ol class="a-star-text">
+    <li>シーンが変わったとき実装とき実行</li>
+    <li>フィードを０から１に変える</li>
+    <li>１の時画面を映す</li>
+  </ol>
+ </div>
+<h3>■ 苦戦したか所</h3>
+ <p>ゲーム遷移時に完全に開ける前に判定を取ってしまっていたことを直すしたところ</p>
+ <h3>■ 解決方法</h3>
+ <p>Raycast Targetをボタンを押したと同時にONにしてシーンが変わった後にoffにすることで解決</p>
   </div>
 </div>
     <table border="1"> 
@@ -123,22 +156,18 @@
             </tr>
             <tr>
                 <th>制制作期間</th>
-                <th>1ヶ月</th>
+                <th>3日</th>
             </tr>
         </tbody>
         </table>
-    <h2 class="large-text">仕様書</h2>
   </div>
     <div class="appeal-video">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/zEg6alpH7p0?si=wavQPZgzGdhM44Bk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div></div>
+    
+  </div></div><div class="appeal-images">
+
+  </div>
 </section>
-<div class="spec-images">
-  
-  <div class="appeal-images">
-<img src="img/スクリーンショット 2026-01-15 001951.png" width="500" height="550">
-<img src="img/スクリーンショット 2026-01-15 002022.png" width="500" height="550">
-</div></div>
+</div>
 
 <section class="band" id="boxadventure">
   <h2>ルートレイダー</h2>
@@ -197,16 +226,15 @@
   <li>タイルマップ上で障害物（壁）を考慮した経路探索</li>
   <li>プレイヤーの位置に応じてリアルタイムで再計算</li>
   <li>無駄な計算を減らすため探索範囲を制限</li>
+  <li>for文で１つずつ動かしていたがforeach文でほぼ同時に動かせるようにした</li>
  </ul>
-
- <h3>■ 実装した理由</h3>
- <p>
- A*を学ぶために採用しました
- </p>
+<h3>■ 苦戦したか所</h3>
+ <p>foreachで動かしたとき重なってしまうバグが発生しそれを直すのに苦戦した</p>
+ <h3>■ 解決方法</h3>
+ <p>移動不可の判定に移動処理順に予約判定を追加してそこにほかの敵の移動予約を入れないようにすることで解決</p>
  </div>
     
   </div>
- </div>
 
  <h2 class="large-text">担当箇所</h2>
  <h2>・プレイヤー・敵</h2>
@@ -239,9 +267,12 @@
         </tbody>
         </table>
  </div>
- <div class="appeal-video">
+ <div class="appeal-media">
    <iframe width="560" height="315" src="https://www.youtube.com/embed/FhNMU0lLnGo?si=Vq494k2pvvTMDLpP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div></div>
+  </div></div><div class="appeal-images">
+    <img src="img/スクリーンショット 2026-04-29 213757.png">
+    <img src="img/スクリーンショット 2026-04-29 213816.png">
+  </div>
 </section>
 
 
@@ -261,11 +292,25 @@
 <div id="modal-trick" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-<h2>・3日間で制作</h2>
-<h2>・アーケード筐体に移植</h2>
-<h2 class="large-text">担当箇所</h2>
-<h2>・ゲームのマップ生成</h2>
-<h2>・宝箱関連</h2>
+<p>CSVを使ったマップ生成</p>
+<h3>■ マップ生成の流れ</h3>
+<div class="a-star-flex">
+  <img src="img/スクリーンショット 2026-04-28 110130.png" class="a-star-img">
+  <div class="a-star-text">
+    
+    <ul>
+      <li><strong>ファイルを1行ずつ読み込む</strong></li>
+      <li><strong>「,（カンマ）」で分割して配列にする</strong></li>
+      <li><strong>数字に応じてオブジェクト生成</strong></li>
+      <li><strong>座標に並べる</strong></li>
+    </ul>
+  </div>
+
+  
+ </div>
+<h3>■ 苦戦したか所</h3>
+ <p>初めてCSVを使いマップ生成をしたので調べながらかつ単純なものであったため苦戦はしなかったが
+  これからのCSVを使いより作品をを作りやすくできるようにしたいと思いました</p>
  </div>
 </div>
 <table border="1"> 
@@ -322,8 +367,42 @@
 <div id="modal-jigoku" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-<h2>・3日間で制作</h2>
-<h2>・東京ゲームショウに出展</h2>
+<!-- 画像エリア -->
+      <div class="modal-images">
+        <img src="img/スクリーンショット 2026-04-29 225246.png" >
+        <img src="img/スクリーンショット 2026-04-29 225323.png" >
+        <img src="img/スクリーンショット 2026-04-29 225329.png" >
+      </div>
+
+      <!-- 説明エリア -->
+      <div class="modal-text">
+        <h2>アピールポイント</h2>
+
+        <p>
+          このスクリプトは、ゲームパッドやキーボードでUIを操作できる
+          メニューシステムを実装したものです。
+        </p>
+
+        <p>
+          上下入力に応じてボタンの選択を変更し、選択中のボタンは拡大表示されることで、
+          ユーザーが現在どこを選んでいるかを直感的に把握できるようにしています。
+        </p>
+
+        <p>
+          また、入力にディレイ処理を設けることで、スティック操作時の誤入力や
+          過剰な移動を防止しています。
+        </p>
+
+        <p>
+          決定ボタン（ゲームパッドのAボタンやEnterキー）で
+          選択中のシーンへ遷移できるようになっており、
+          シンプルで扱いやすいUI設計を意識しました。
+        </p>
+
+      </div>
+<h3>改善した点</h3>
+<p>今まではボタンをマウスで押すことでシーンを移動させていたが前に作った作品でゲーム内がマウス操作がいらないならキーボードだけを使い遊べる方がいいということを反映させました</p>
+<p>ボタンの判定が選択されているかどうかを分かりやすいようにした点</p>
  </div>
 </div>
 <h2 class="large-text">担当箇所</h2>
@@ -381,8 +460,12 @@
 <div id="modal-tokage" class="modal">
   <div class="modal-content">
     <span  class="close">&times;</span>
-<h2>・3日間で制作</h2>
-<h2>・</h2>
+<h2>タイトルシーン管理スクリプト</h2>
+ <p>
+      このスクリプトは、Unityのタイトル画面におけるボタン操作・画面遷移・ステージ選択を管理します。
+    </p>
+    <p>この先輩に教えてもらったボタンとシーンの管理のしやすい方法を取り込みながら作成しました</p>
+
  </div>
 </div>
 <h2 class="large-text">担当箇所</h2>
@@ -440,11 +523,15 @@
 <div id="modal-zebiusu" class="modal">
   <div class="modal-content">
     <span  class="close">&times;</span>
-<h2>・敵機体（空中）すべて</h2>
-<h2 class="large-text">担当箇所</h2>
-<h2>・敵機体（空中）を担当</h2>
+<p>ほぼすべての処理をif文で作っており１年で習ったことの復習のようなもの</p>
+<h3>■ 苦戦したか所</h3>
+ <p>左右からくる敵をの移動方向の指定に苦戦をした</p>
+ <h3>■ 解決方法</h3>
+ <p>switch文を使い移動方向のみ変えられるようにし複数のスクリプトを使わないようにした</p>
   </div>
 </div>
+<h2 class="large-text">担当箇所</h2>
+ <h2>・敵(空中)</h2>
 <table border="1"> 
     <tbody>
     <tr>
