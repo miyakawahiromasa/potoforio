@@ -66,6 +66,7 @@
   
 </section>
 <div class="works-nav">
+    <a href="#vanta">VANTA</a>
     <a href="#hoshiatsume">星間ひっこしパッキング</a>
     <a href="#boxadventure">ルートレイダー</a>
     <a href="#trick-or-find">Trick or Find</a>
@@ -73,7 +74,247 @@
     <a href="#tokage">トカゲサバイバー</a>
     <a href="#zebiusu">ゼビウス(再現)</a>
 </div>
+</div>
+<section class="band" id="vanta">
+  <h2>VANTA</h2>
+</section>
+<section class="bands">
+  <h3>概要</h3>
+  <p class="large-text"></p>
+  <p class="large-text"></p>
+</section>
+<section class="appeal">
+  <div class="appeal-top">
+  <div class="appeal-text">
+<button class="appealButton" data-target="modal-hoshi">アピールポイントを見る</button>
 
+<div id="modal-hoshi" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+<h2>リアルタイム通信システム</h2>
+
+<p>
+Go言語のWebSocketサーバーとUnityを接続し、
+オンライン対戦システムを制作しました。
+</p>
+
+<p>
+プレイヤーの位置・回転・射撃状態・HPなどを
+リアルタイムで同期し、
+2人対戦が行えるFPSを制作しています。
+</p>
+
+<h3>■ 実装した機能</h3>
+
+<ul>
+  <li>WebSocket通信</li>
+  <li>プレイヤーマッチング</li>
+  <li>プレイヤー座標同期</li>
+  <li>回転同期</li>
+  <li>射撃同期</li>
+  <li>ダメージ同期</li>
+  <li>HP同期</li>
+  <li>死亡判定</li>
+  <li>勝敗判定</li>
+  <li>ルーム管理</li>
+</ul>
+
+<h3>■ サーバー側の工夫</h3>
+
+<p>
+Go側ではRoom構造体を作成し、
+試合ごとにプレイヤーを分離管理しています。
+</p>
+
+<div class="a-star-flex">
+
+<div class="a-star-text">
+
+<ul>
+  <li>
+    waitingQueueでマッチ待機
+  </li>
+
+  <li>
+    2人揃うと自動でルーム生成
+  </li>
+
+  <li>
+    UUIDでプレイヤーIDを生成
+  </li>
+
+  <li>
+    map[*websocket.Conn]*Player
+    を使用してプレイヤー管理
+  </li>
+
+  <li>
+    typeで通信内容を分岐
+  </li>
+</ul>
+
+</div>
+
+</div>
+
+<h3>■ プレイヤー同期</h3>
+
+<p>
+PlayerControllerで現在位置・回転・状態を取得し、
+JSON化してサーバーへ送信しています。
+</p>
+
+<div class="a-star-flex">
+
+<div class="a-star-text">
+
+<ul>
+  <li>position_x / y / z</li>
+  <li>rot_x / rot_y</li>
+  <li>is_running</li>
+  <li>is_shooting</li>
+</ul>
+
+</div>
+
+</div>
+
+<p>
+受信したデータはPlayerManagerで処理し、
+他プレイヤーの位置や回転を同期しています。
+</p>
+
+<h3>■ 射撃システム</h3>
+
+<p>
+GunスクリプトでRaycastを使用した
+FPS形式の射撃処理を実装しました。
+</p>
+
+<div class="a-star-flex">
+
+<div class="a-star-text">
+
+<ul>
+  <li>カメラ中央からRay発射</li>
+  <li>命中時にPlayerObject取得</li>
+  <li>DamageMessageを送信</li>
+  <li>サーバー側でHP計算</li>
+</ul>
+
+</div>
+
+</div>
+
+<h3>■ HP同期と死亡処理</h3>
+
+<p>
+サーバー側でダメージ計算後、
+hp_update を送信して
+クライアント側のHPを同期しています。
+</p>
+
+<p>
+HPが0になると、
+死亡通知(dead)と
+ゲーム終了(game_end)を送信しています。
+</p>
+
+<h3>■ Unity側の工夫</h3>
+
+<ul>
+  <li>
+    TopViewClientをSingleton化し、
+    シーン遷移後も通信維持
+  </li>
+
+  <li>
+    DontDestroyOnLoadを使用して
+    WebSocket接続を保持
+  </li>
+
+  <li>
+    自分のプレイヤーのみ
+    Cameraと操作を有効化
+  </li>
+
+  <li>
+    RemotePlayerは同期専用に変更
+  </li>
+</ul>
+
+<h3>■ 苦戦した点</h3>
+
+<p>
+リアルタイム通信では、
+切断時や同期タイミングのズレによって
+プレイヤー情報が正常に更新されない問題がありました。
+</p>
+
+<p>
+また、自分自身の同期情報を受信してしまい、
+プレイヤーが震える問題も発生しました。
+</p>
+
+<h3>■ 解決方法</h3>
+
+<ul>
+  <li>
+    data.id == myPlayerId
+    で自分自身の同期を無視
+  </li>
+
+  <li>
+    RemovePlayerで切断処理を追加
+  </li>
+
+  <li>
+    Roomごとにプレイヤーを管理
+  </li>
+
+  <li>
+    Singleton化で通信を維持
+  </li>
+</ul>
+<p>このゲームはまだ未完成です７月の発表会にベータ版を完成予定です</p>
+  </div>
+</div>
+    <table border="1"> 
+    <tbody>
+    <tr>
+      <th></th>
+       <th>内容</th>
+      </tr>
+            <tr> 
+                <th>プラットフォーム</th>
+                <th>WindowsPC</th>
+            </tr>
+            <tr>
+                <th>言語</th>
+                <th>C#</th>
+            </tr>
+            <tr>
+                <th>開発環境</th>
+                <th>Unity</th>
+            </tr>
+            <tr>
+                <th>制作人数</th>
+                <th>1人</th>
+            </tr>
+            <tr>
+                <th>制制作期間</th>
+                <th>制作中</th>
+            </tr>
+        </tbody>
+        </table>
+  </div>
+    <div class="appeal-media">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/98xCrSP5QF8?si=U79P4-We5oRTygVi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div></div><div class="appeal-images">
+
+  </div>
+</section>
+</div>
 </div>
 <section class="band" id="hoshiatsume">
   <h2>星間ひっこしパッキング</h2>
