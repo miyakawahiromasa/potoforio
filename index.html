@@ -113,9 +113,14 @@ Go言語のWebSocketサーバーとUnityを接続し、
 
 <ul>
   <li>WebSocket通信</li>
-  <li>プレイヤーマッチング</li>
+  <li>UUIDによるプレイヤー管理</li>
+  <li>マッチング機能</li>
+  <li>スポーン位置管理</li>
+  <li>プレイヤー生成</li>
   <li>プレイヤー座標同期</li>
   <li>回転同期</li>
+  <li>ジャンプ同期</li>
+  <li>移動アニメーション同期</li>
   <li>射撃同期</li>
   <li>ダメージ同期</li>
   <li>HP同期</li>
@@ -127,104 +132,75 @@ Go言語のWebSocketサーバーとUnityを接続し、
 <h3>■ サーバー側の工夫</h3>
 
 <p>
-Go側ではRoom構造体を作成し、
-試合ごとにプレイヤーを分離管理しています。
-</p>
-
-<div class="a-star-flex">
-
-<div class="a-star-text">
-
-<ul>
-  <li>
-    waitingQueueでマッチ待機
-  </li>
-
-  <li>
-    2人揃うと自動でルーム生成
-  </li>
-
-  <li>
-    UUIDでプレイヤーIDを生成
-  </li>
-
-  <li>
-    map[*websocket.Conn]*Player
-    を使用してプレイヤー管理
-  </li>
-
-  <li>
-    typeで通信内容を分岐
-  </li>
-</ul>
-
-</div>
-
-</div>
-
+GoではRoom構造体を用意し、試合ごとにプレイヤーを管理しています。
+接続時にはUUIDを発行してプレイヤーを識別し、待機列(waitingQueue)へ追加します。
+2人揃うと自動でルームを生成し、それぞれ異なるスポーン地点を割り当てて試合を開始します。
+</p><p>プレイヤーは
+map[*websocket.Conn]*Player
+で管理しており、接続・切断・メッセージ送信を高速に処理しています。
+また、通信内容は
+type
+によって判別し、
+player
+damage
+shoot
+など処理を分岐しています。</p>
+<img src="img/スクリーンショット 2026-06-30 113239.png" class="a-star-img">
+<img src="img/スクリーンショット 2026-06-30 111807.png" class="a-star-img">
+<img src="img/スクリーンショット 2026-06-30 112128.png" class="a-star-img">
 <h3>■ プレイヤー同期</h3>
 
 <p>
-PlayerControllerで現在位置・回転・状態を取得し、
-JSON化してサーバーへ送信しています。
-</p>
+PlayerControllerでは約0.05秒ごとに
 
-<div class="a-star-flex">
+座標
+回転
+移動状態
+ジャンプ
+射撃状態
 
-<div class="a-star-text">
+をJSONへ変換しサーバーへ送信しています。
 
-<ul>
-  <li>position_x / y / z</li>
-  <li>rot_x / rot_y</li>
-  <li>is_running</li>
-  <li>is_shooting</li>
-</ul>
+サーバーでは受信したデータをRoom内の他プレイヤーへブロードキャストし、
+PlayerManagerでRemotePlayerの位置・回転・アニメーションを更新しています。
 
-</div>
-
-</div>
-
-<p>
-受信したデータはPlayerManagerで処理し、
-他プレイヤーの位置や回転を同期しています。
+これにより滑らかなリアルタイム同期を実現しました。
 </p>
 
 <h3>■ 射撃システム</h3>
 
 <p>
-GunスクリプトでRaycastを使用した
-FPS形式の射撃処理を実装しました。
+射撃はRaycast方式で実装しています。
+
+クライアントでは画面中央からRayを飛ばし、
+命中したPlayerObjectからプレイヤーIDを取得します。
+その後
+[damage]メッセージを送信し、
+サーバー側でHP計算を行う構成にしました。
+また、
+[shoot]
+メッセージを別に送ることで、
+相手側でも発射音を同期しています。
 </p>
 
-<div class="a-star-flex">
 
-<div class="a-star-text">
-
-<ul>
-  <li>カメラ中央からRay発射</li>
-  <li>命中時にPlayerObject取得</li>
-  <li>DamageMessageを送信</li>
-  <li>サーバー側でHP計算</li>
-</ul>
-
-</div>
-
-</div>
-
-<h3>■ HP同期と死亡処理</h3>
+<h3>■ HP・勝敗管理</h3>
 
 <p>
-サーバー側でダメージ計算後、
-hp_update を送信して
-クライアント側のHPを同期しています。
+サーバーが唯一HPを管理する権限を持っています。
+ダメージを受信すると対象プレイヤーのHPを減少させ、。
 </p>
-
 <p>
-HPが0になると、
-死亡通知(dead)と
-ゲーム終了(game_end)を送信しています。
+hp_updateを全クライアントへ送信してHPバーを更新します。
 </p>
-
+<p>
+HPが0になると
+game_result
+winner_id
+loser_id
+を送信し、
+全クライアントで同じタイミングでゲーム終了処理を行っています。
+</p>
 <h3>■ Unity側の工夫</h3>
 
 <ul>
@@ -281,7 +257,6 @@ HPが0になると、
     Singleton化で通信を維持
   </li>
 </ul>
-<p>このゲームはまだ未完成です７月の発表会にベータ版を完成予定です</p>
   </div>
 </div>
     <table border="1"> 
